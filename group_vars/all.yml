@@ -39,6 +39,11 @@ registry_entries:
     name: TaskbarSmallIcons
     data: 1
     type: dword
+  # 「常にすべてのイコンを通知領域に表示する」の有効化
+  - path: HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
+    name: EnableAutoTray
+    data: 0
+    type: dword
   # エクスプローラーの「タイトルバーに完全なパスを表示する」の有効化
   - path: HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CabinetState
     name: FullPath
@@ -78,6 +83,8 @@ choco_packages:
   - {name: discord}
   - {name: leagueoflegends}
   - {name: steam}
+  # これインストールめっちゃ時間かかる
+  - {name: realtek-hd-audio-driver, timeout: 5400}
 
 git_config:
   system:

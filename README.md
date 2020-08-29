@@ -6,53 +6,46 @@
 
 - IPアドレスを設定して控えておく
 
-- 管理者権限のローカルユーザを作成しておく
+- WinRM有効化  
 
-- WinRM有効化
-
-```powershell
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1 -OutFile ConfigureRemotingForAnsible.ps1
-powershell -ExecutionPolicy RemoteSigned .\ConfigureRemotingForAnsible.ps1
-```
+    ```powershell
+    Invoke-WebRequest -Uri https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1 -OutFile ConfigureRemotingForAnsible.ps1
+    powershell -ExecutionPolicy RemoteSigned .\ConfigureRemotingForAnsible.ps1
+    ```
 
 ### 何かLinux環境での作業
 
 Windowsしかない場合は…VMとかDockerで頑張って(投げやり)  
 
 - Ansible実行環境を用意する  
-    例えばpython3入ってる環境ならこんな感じ
+    例えばpython3入ってる環境ならこんな感じ  
 
-```console
-python -m venv .venv
-source .venv/bin/activate
-pip install -r python_requirements.txt
-```
+    ```console
+    python -m venv .venv
+    source .venv/bin/activate
+    pip install -r python_requirements.txt
+    ```
 
-- このリポジトリクローン
+- このリポジトリクローン  
 
-```console
-git clone https://github.com/answer-d/gaming_windows_setup_playbook.git
-cd gaming_windows_setup_playbook
-```
+    ```console
+    git clone https://github.com/answer-d/gaming_windows_setup_playbook.git
+    cd gaming_windows_setup_playbook
+    ```
 
-- collectionインストール
+- collectionインストール  
 
-```console
-ansible-galaxy collection install -r ansible_requirements.yml -p .ansible/collections
-```
+    ```console
+    ansible-galaxy collection install -r ansible_requirements.yml -p .ansible/collections
+    ```
 
-- Playbook実行
-    - 普通に実行  
+- Playbook実行  
 
-        ```console
-        ansible-playbook setup.yml -u <接続ユーザ名>
-        ```
+    ```console
+    ansible-playbook setup.yml -u <接続ユーザ名>
+    ```
 
-    - リブートしたくないとき  
-
-        ```console
-        ansible-playbook setup.yml -u <接続ユーザ名> --skip-tags reboot
-        ```
+    接続ユーザは管理者権限を持つこと
 
 - こんな感じのエラーが出たら  
 
@@ -74,10 +67,13 @@ ansible-galaxy collection install -r ansible_requirements.yml -p .ansible/collec
     - めんどいので保留なう
 - Chocolateyでインストールできないものたち
     - Blitz.gg
+        chocoパッケージ無し
     - Razerのやつ(Razer Central？)
+        - chocoパッケージ無し
         - Synapseはあったけど多分古い
     - google ime
-        - なんか入らん
+        - 多分インストール後にウインドウ出てくるから？失敗したっぽい
+        - Windowsログイン後に `choco install googlejapaneseinput` でインストールしよう
 - [gitconfigモジュール](https://docs.ansible.com/ansible/latest/modules/git_config_module.html)はLinuxにしか使えないのであきらめた
     - まぁ別に開発に使わんからええやろ！(適当)
 
