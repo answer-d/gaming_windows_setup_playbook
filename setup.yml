@@ -1,0 +1,7 @@
+---
+- name: setup gaming windows
+  hosts: all
+
+  tasks:
+    - name: test connection
+      win_ping:
