@@ -23,7 +23,7 @@ Windowsしかない場合は…VMとかDockerで頑張って(投げやり)
 ```console
 python -m venv .venv
 source .venv/bin/activate
-pip install ansible
+pip install -r python_requirements.txt
 ```
 
 - このリポジトリクローン
@@ -33,20 +33,33 @@ git clone https://github.com/answer-d/gaming_windows_setup_playbook.git
 cd gaming_windows_setup_playbook
 ```
 
-- Playbook実行
+- collectionインストール
 
 ```console
-ansible-playbook -i inventory.yml setup.yml -u <接続ユーザ名> --ask-pass
+ansible-galaxy collection install -r ansible_requirements.yml -p .ansible/collections
 ```
 
-- こんな感じのエラーが出たら
+- Playbook実行
+    - 普通に実行  
+
+        ```console
+        ansible-playbook setup.yml -u <接続ユーザ名>
+        ```
+
+    - リブートしたくないとき  
+
+        ```console
+        ansible-playbook setup.yml -u <接続ユーザ名> --skip-tags reboot
+        ```
+
+- こんな感じのエラーが出たら  
 
     ```plain
     objc[6760]: +[__NSPlaceholderDate initialize] may have been in progress in another thread when fork() was called.
     objc[6760]: +[__NSPlaceholderDate initialize] may have been in progress in another thread when fork() was called. We cannot safely call it or ignore it in the fork() child process. Crashing instead. Set a breakpoint on objc_initializeAfterForkError to debug.
     ```
 
-    - これで回避できるはず
+    - これで回避できるはず  
 
         ```console
         export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
@@ -57,6 +70,12 @@ ansible-playbook -i inventory.yml setup.yml -u <接続ユーザ名> --ask-pass
 - Playbook実行時に毎回パスワード打つの面倒だし証明書で認証する方式やってみたい
     - <https://docs.ansible.com/ansible/2.9_ja/user_guide/windows_winrm.html#id4>
     - めんどいので保留なう
+- Chocolateyでインストールできないものたち
+    - Blitz.gg
+    - Razerのやつ(Razer Central？)
+        - Synapseはあったけど多分古い
+- [gitconfigモジュール](https://docs.ansible.com/ansible/latest/modules/git_config_module.html)はLinuxにしか使えないのであきらめた
+    - まぁ別に開発に使わんからええやろ！(適当)
 
 ## Refs
 
@@ -67,3 +86,7 @@ ansible-playbook -i inventory.yml setup.yml -u <接続ユーザ名> --ask-pass
 ### Ansible Error – “NSPlaceholderDate initialize〜
 
 - <https://rafpe.ninja/2018/02/24/ansible-error-nsplaceholderdate-initialize-may-have-been-in-progress-in-another-thread-when-fork-was-called/>
+
+### Windows 10 Proの初期設定をAnsibleなどでやってみる
+
+- <https://qiita.com/yunano/items/8f1db93dc34f7aeeb469>

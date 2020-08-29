@@ -1,0 +1,5 @@
+---
+- name: hostnameをインベントリに定義した名前に変更
+  ansible.windows.win_hostname:
+    name: "{{ inventory_hostname }}"
+  notify: reboot

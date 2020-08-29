@@ -3,3 +3,82 @@ ansible_connection: winrm
 ansible_port: 5986
 ansible_winrm_transport: basic
 ansible_winrm_server_cert_validation: ignore
+
+registry_entries:
+  # エクスプローラーの「隠しファイル、隠しフォルダー、および隠しドライブを表示する」の有効化
+  - path: HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+    name: Hidden
+    data: 1
+    type: dword
+  # エクスプローラーの「登録されている拡張子は表示しない」の無効化
+  - path: HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+    name: HideFileExt
+    data: 0
+    type: dword
+  # エクスプローラーの「保護されたオペレーションシステムファイルを表示しない」の無効化
+  - path: HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+    name: ShowSuperHidden
+    data: 1
+    type: dword
+  # 固定キー機能がキー入力によって有効になるのを防ぐ
+  # https://msdn.microsoft.com/en-us/library/dd373652%28VS.85%29.aspx
+  - path: HKCU:\Control Panel\Accessibility\StickyKeys
+    name: Flags
+    data: 2
+  # 「右シフトキーが8秒間押されたときにフィルターキーを有効にする」の無効化
+  - path: HKCU:\Control Panel\Accessibility\Keyboard Response
+    name: Flags
+    data: 98
+  # 「ときどきスタート画面におすすめを表示する」の無効化
+  - path: HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
+    name: SystemPaneSuggestionsEnabled
+    data: 0
+    type: dword
+  # 「小さいタスクバーボタンを使う」の有効化
+  - path: HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+    name: TaskbarSmallIcons
+    data: 1
+    type: dword
+  # エクスプローラーの「タイトルバーに完全なパスを表示する」の有効化
+  - path: HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CabinetState
+    name: FullPath
+    data: 1
+    type: dword
+  # 「このコンピューターへのリモート接続を許可する」を選択
+  - path: HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server
+    name: fDenyTSConnections
+    data: 0
+    type: dword
+  # 「ネットワークレベル認証でリモートデスクトップを実行しているコンピューターからのみ接続を許可する」の無効化
+  - path: HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp
+    name: UserAuthentication
+    data: 0
+    type: dword
+  # RDP複数セッション有効化
+  - path: HKLM:\System\CurrentControlSet\Control\Terminal Server
+    name: fSingleSessionPerUser
+    data: 0
+    type: dword
+
+choco_packages:
+  - {name: googlechrome}
+  - {name: vscode}
+  - {name: teraterm}
+  - {name: winscp}
+  - {name: lhaplus}
+  - {name: python}
+  - {name: git}
+  - {name: googledrive}
+  - {name: googlejapaneseinput}
+  - {name: geforce-experience}
+  - {name: discord}
+  - {name: leagueoflegends}
+  - {name: steam}
+
+git_config:
+  system:
+    credential.helper: wincred
+  global:
+    user.name: あんでぃー
+    user.email: bboy.answer.d@gmail.com
+    pull.ff: only

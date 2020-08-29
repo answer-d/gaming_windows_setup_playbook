@@ -1,0 +1,8 @@
+---
+- name: レジストリ色々変える
+  ansible.windows.win_regedit:
+    path: "{{ item.path }}"
+    name: "{{ item.name }}"
+    data: "{{ item.data }}"
+    type: "{{ item.type | default(omit) }}"
+  loop: "{{ registry_entries }}"

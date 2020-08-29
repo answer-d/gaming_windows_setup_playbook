@@ -1,0 +1,7 @@
+---
+registry_entries:
+  # エクスプローラーの「隠しファイル、隠しフォルダー、および隠しドライブを表示する」の有効化
+  - path: HKCU:\foo
+    name: bar
+    data: baz
+    type: dword

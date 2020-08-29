@@ -1,0 +1,6 @@
+---
+- name: パッケージインストール
+  chocolatey.chocolatey.win_chocolatey:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default(omit) }}"
+  loop: "{{ choco_packages }}"

@@ -3,5 +3,32 @@
   hosts: all
 
   tasks:
-    - name: test connection
-      win_ping:
+    - name: ホスト名設定
+      import_role:
+        name: hostname
+      tags:
+        - hostname
+
+    - name: ファイアウォール設定 - ping許可
+      community.windows.win_firewall_rule:
+        name: Allow ICMPv4 incoming echo request
+        enabled: true
+        state: present
+        profiles: ["domain", "private", "public"]
+        action: allow
+        direction: in
+        protocol: icmpv4
+
+    - name: レジストリ設定
+      import_role:
+        name: registry
+      tags:
+        - registry
+
+    # Chocolateyがインストールされていなかったらしてくれる
+    - name: Chocolateyでパッケージインストール
+      import_role:
+        name: chocolatey
+      tags:
+        - package
+        - chocolatey

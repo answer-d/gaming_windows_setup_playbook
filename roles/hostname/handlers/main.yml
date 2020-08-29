@@ -1,0 +1,6 @@
+---
+- name: ホスト名を変更した場合はリブート
+  ansible.windows.win_reboot:
+  listen: reboot
+  tags:
+    - reboot
