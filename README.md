@@ -1,0 +1,2 @@
+# gaming_windows_setup_playbook
+俺のゲーミングWindowsを構築するAnsible Playbook
