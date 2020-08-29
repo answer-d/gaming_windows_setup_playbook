@@ -6,6 +6,8 @@
 
 - IPアドレスを設定して控えておく
 
+- 管理者権限のローカルユーザを作成しておく
+
 - WinRM有効化
 
 ```powershell
@@ -74,6 +76,8 @@ ansible-galaxy collection install -r ansible_requirements.yml -p .ansible/collec
     - Blitz.gg
     - Razerのやつ(Razer Central？)
         - Synapseはあったけど多分古い
+    - google ime
+        - なんか入らん
 - [gitconfigモジュール](https://docs.ansible.com/ansible/latest/modules/git_config_module.html)はLinuxにしか使えないのであきらめた
     - まぁ別に開発に使わんからええやろ！(適当)
 

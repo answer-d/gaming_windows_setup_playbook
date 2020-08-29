@@ -3,4 +3,5 @@
   chocolatey.chocolatey.win_chocolatey:
     name: "{{ item.name }}"
     state: "{{ item.state | default(omit) }}"
+    allow_empty_checksums: "{{ item.allow_empty_checksums | default(omit) }}"
   loop: "{{ choco_packages }}"

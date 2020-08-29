@@ -59,17 +59,21 @@ registry_entries:
     name: fSingleSessionPerUser
     data: 0
     type: dword
+  # UAC無効化
+  - path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system
+    name: EnableLUA
+    data: 0
+    type: dword
 
 choco_packages:
   - {name: googlechrome}
   - {name: vscode}
   - {name: teraterm}
   - {name: winscp}
-  - {name: lhaplus}
+  - {name: lhaplus, allow_empty_checksums: true}
   - {name: python}
   - {name: git}
   - {name: googledrive}
-  - {name: googlejapaneseinput}
   - {name: geforce-experience}
   - {name: discord}
   - {name: leagueoflegends}
