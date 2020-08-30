@@ -12,3 +12,14 @@ jobs:
         run: docker run -v $PWD:/yaml sdesbure/yamllint yamllint -s .
       - name: markdownlint
         run: docker run -i -v $PWD:/work tmknom/markdownlint -c .markdownlint.json .
+
+  it:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: docker version
+        run: docker version
+      - name: hogehoge
+        run: Get-Childitem C:\ProgramData\Docker
+      - name: pull linux container test and show ip addr
+        run: docker run centos ip a
