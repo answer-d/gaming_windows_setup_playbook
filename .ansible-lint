@@ -1,0 +1,12 @@
+---
+exclude_paths:
+  - .github/
+  - .ansible/
+
+parseable: true
+quiet: false
+use_default_rules: true
+verbosity: 1
+
+skip_list:
+  - '701'  # [E701] No 'galaxy_info' found
