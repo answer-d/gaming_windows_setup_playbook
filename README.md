@@ -1,5 +1,7 @@
 # 俺のゲーミングWindowsを構築するAnsible Playbook
 
+![GitHub Actions status](https://github.com/answer-d/gaming_windows_setup_playbook/workflows/CI/badge.svg)
+
 ## Installation
 
 ### Windowsでの事前作業
@@ -62,6 +64,8 @@ Windowsしかない場合は…VMとかDockerで頑張って(投げやり)
 
 ## Memo
 
+- ansibleモジュールではなく `ansible-base` でインストールしてCollectionでロールインストールする方式で実装
+    - v2.10対応のため
 - Playbook実行時に毎回パスワード打つの面倒だし証明書で認証する方式やってみたい
     - <https://docs.ansible.com/ansible/2.9_ja/user_guide/windows_winrm.html#id4>
     - めんどいので保留なう
