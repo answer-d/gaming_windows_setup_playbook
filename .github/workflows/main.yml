@@ -3,22 +3,12 @@ name: CI
 
 on: [push]
 
-env:
-  # このパイプラインで実行しない処理をスキップするための環境識別用変数
-  ORE_NO_GAMING_WINDOWS_CICD_PIPELINE: true
-
 jobs:
   ut:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install molecule
-        run: pip3 install -r requirements.txt
-      - name: Install markdownlint
-        run: npm install -g markdownlint-cli
       - name: yamllint
-        run: yamllint -s .
-      - name: ansible-lint
-        run: ansible-lint
+        run: docker run -v $PWD:/yaml sdesbure/yamllint yamllint -s .
       - name: markdownlint
-        run: markdownlint -c .markdownlint.json .
+        run: docker run -i -v $PWD:/work tmknom/markdownlint -c .markdownlint.json .

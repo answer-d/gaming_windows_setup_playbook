@@ -76,6 +76,7 @@ Windowsしかない場合は…VMとかDockerで頑張って(投げやり)
         - Windowsログイン後に `choco install googlejapaneseinput` でインストールしよう
 - [gitconfigモジュール](https://docs.ansible.com/ansible/latest/modules/git_config_module.html)はLinuxにしか使えないのであきらめた
     - まぁ別に開発に使わんからええやろ！(適当)
+- 最後に気づいたんだけど、ansible-lintがまだansible-baseに対応してない疑惑でCIプロセスに入れられんかった
 
 ## Refs
 
