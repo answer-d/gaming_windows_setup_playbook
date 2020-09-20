@@ -15,10 +15,10 @@ registry_entries:
     name: HideFileExt
     data: 0
     type: dword
-  # エクスプローラーの「保護されたオペレーションシステムファイルを表示しない」の無効化
+  # エクスプローラーの「保護されたオペレーションシステムファイルを表示しない」の有効化
   - path: HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced
     name: ShowSuperHidden
-    data: 1
+    data: 0
     type: dword
   # 固定キー機能がキー入力によって有効になるのを防ぐ
   # https://msdn.microsoft.com/en-us/library/dd373652%28VS.85%29.aspx
@@ -79,7 +79,6 @@ choco_packages:
   - {name: python}
   - {name: git}
   - {name: googledrive}
-  - {name: geforce-experience}
   - {name: discord}
   - {name: leagueoflegends}
   - {name: steam}
