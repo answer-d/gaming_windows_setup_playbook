@@ -1,0 +1,4 @@
+---
+- name: マシンの再起動
+  win_reboot: {}
+  listen: reboot
